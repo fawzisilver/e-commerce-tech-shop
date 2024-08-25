@@ -1,0 +1,15 @@
+{
+  "name": "e-commerce-tech-shop",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Isaac Abelida",
+  "license": "MIT",
+  "description": "ecommerce app built in MERN stack",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
