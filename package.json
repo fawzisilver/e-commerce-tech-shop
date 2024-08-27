@@ -13,6 +13,7 @@
   "license": "MIT",
   "description": "ecommerce app built in MERN stack",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
