@@ -38,16 +38,6 @@ const importData = async () => {
     }
 }
 
-const importDaata = async () => {
-    try {
-        await Order.deleteMany();
-        await Product.deleteMany();
-        await User
-    } catch (error) {
-
-    }
-}
-
 
 
 const destroyData = async () => {
@@ -64,11 +54,17 @@ const destroyData = async () => {
 }
 
 
-if (process.argv[2] === 'import') {
-    importData();
-} else if (process.argv[2] === 'destroy' || process.argv[2] === '-d') {
+// if (process.argv[2] === 'import') {
+//     importData();
+// } else if (process.argv[2] === 'destroy' || process.argv[2] === '-d') {
+//     destroyData();
+// } else {
+//     console.log('Invalid. Provide a valid argument');
+//     process.exit();
+// }
+
+if (process.argv[2] === "-d") {
     destroyData();
 } else {
-    console.log('Invalid. Provide a valid argument');
-    process.exit();
+    importData()
 }
