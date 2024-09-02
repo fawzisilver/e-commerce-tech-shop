@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import colors from 'colors'
-import users from "./data/users";
+import users from "./data/users.js";
 import products from "./data/products.js";
 import User from './models/userModel.js';
 import Product from "./models/productModel.js";
@@ -38,6 +38,18 @@ const importData = async () => {
     }
 }
 
+const importDaata = async () => {
+    try {
+        await Order.deleteMany();
+        await Product.deleteMany();
+        await User
+    } catch (error) {
+
+    }
+}
+
+
+
 const destroyData = async () => {
     try {
         await Order.deleteMany();
@@ -49,4 +61,14 @@ const destroyData = async () => {
         console.error(`${error}`.red.inverse);
         process.exit(1);
     }
+}
+
+
+if (process.argv[2] === 'import') {
+    importData();
+} else if (process.argv[2] === 'destroy' || process.argv[2] === '-d') {
+    destroyData();
+} else {
+    console.log('Invalid. Provide a valid argument');
+    process.exit();
 }
