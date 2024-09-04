@@ -5,6 +5,7 @@ import cors from 'cors'
 import connectDB from './config/db.js';
 dotenv.config();
 import productRoutes from "./routes/productRoutes.js"
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 
 connectDB(); // connect to mongoDB
@@ -15,20 +16,12 @@ app.use(cors());
 
 app.use('/api/products', productRoutes)
 
+//overriding express error handler
+app.use(notFound);
+app.use(errorHandler);
+
 
 app.listen(port, ()=> console.log(`server is running on port ${port}`))
 
 
-// app.get("/", (req, res) => {
-//     res.send('API is running...')
-// })
 
-
-// app.get('/api/products', (req, res)=> {
-//     res.json(products)
-// })
-
-// app.get('/api/products/:id', (req, res) => {
-//     const product = products.find((p)=> p._id === req.params.id);
-//     res.json(product);
-// })
