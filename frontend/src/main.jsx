@@ -8,7 +8,7 @@ import './assets/styles/bootstrap.custom.css'
 import HomeScreen from './screens/HomeScreen.jsx' 
 import ProductScreen from './screens/ProductScreen.jsx'
 import { Provider } from 'react-redux'
-import store from '../store.js'
+import store from './slices/store.js'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>

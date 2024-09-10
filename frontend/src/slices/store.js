@@ -1,6 +1,6 @@
 //entry point of redux
 import { configureStore } from '@reduxjs/toolkit'
-import { apiSlice } from './src/slices/apiSlice';
+import { apiSlice } from './apiSlice';
 
 const store = configureStore({
     reducer: {

@@ -1,32 +1,21 @@
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
+import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 // import products from '../products'
-import axios from 'axios'
-import { useEffect, useState } from 'react';
+// import axios from 'axios'
+// import { useEffect, useState } from 'react';
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
- 
+  // redux toolkit (instead of fetching through axios)
+  const { data: products, isLoading, error } = useGetProductsQuery();
 
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
-        setProducts(data);
-      } catch(error) {
-        throw new Error('Error fetching data: ', error);
-      }
-    }
-
-    fetchProducts();
-  }, [])
-  
-    
-  
-
+//ternary op
   return (
     <>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (<div>{error?.data?.message || error.error}</div>) : (
+        <>
         <h1>Latest Products</h1>
         <Row>
             {products.map((product)=>(
@@ -35,6 +24,8 @@ const HomeScreen = () => {
                 </Col>
             ))}
         </Row>
+        </>
+      )}
     </>
   )
 }
@@ -43,6 +34,20 @@ export default HomeScreen
 
 
 
+  // const [products, setProducts] = useState([]);
+ 
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const { data } = await axios.get('http://localhost:5000/api/products');
+  //       setProducts(data);
+  //     } catch(error) {
+  //       throw new Error('Error fetching data: ', error);
+  //     }
+  //   }
 
+  //   fetchProducts();
+  // }, [])
+  
  
 
