@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import { Spinner } from 'react-bootstrap'
+import Message from '../components/Message';
 // import products from '../products'
 // import axios from 'axios'
 
@@ -19,9 +21,9 @@ const ProductScreen = () => {
         </Link>
 
         { isLoading ? (
-            <h2>Loading...</h2>
+            <Spinner />
         ) : error ? (
-            <div>{error?.data.message || error.error}</div>
+            <Message variant='danger'>{error?.data.message || error.error}</Message>
         ) : (
              <Row>
              <Col md={5}>
