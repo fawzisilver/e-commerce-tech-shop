@@ -27,7 +27,7 @@ const ProductScreen = () => {
 
     //addToCart of cartSlice
     const addToCartHandler = () => {
-        dispatch(addToCart({...product, qty }));  //do action 
+        dispatch(addToCart({...product, qty }));  //do action (to cartSlice)
         navigate('/cart') //go here
     }
 
