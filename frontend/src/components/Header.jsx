@@ -2,7 +2,7 @@ import { Badge, Navbar, Nav, Container} from 'react-bootstrap'
 import { FaShoppingCart, FaUser } from 'react-icons/fa'
 import { LinkContainer} from 'react-router-bootstrap'
 import logo from '../assets/logo.png'
-import { useSelector } from 'react-redux' //select global state
+import { useSelector } from 'react-redux' //select global state from redux store
 
 
 const Header = () => {

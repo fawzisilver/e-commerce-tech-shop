@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateCart } from "../utils/cartUtils";
 
-//save to local storage
+//save to local storage / cartItem is a property with array
 const initialState = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem("cart")) : { cartItems: []};
 
 
@@ -26,10 +26,15 @@ const cartSlice = createSlice({
             //updated state is returned to redux
             return updateCart(state);
         },
+        removeFromCart: (state, action) => {
+            state.cartItems = state.cartItems.filter((x) => x._id !== action.payload)
+
+            return updateCart(state);
+        }
     }
 })
 
 //export action (when adding new functions as an action)
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
