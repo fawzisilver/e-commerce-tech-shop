@@ -4,7 +4,13 @@ import { getProducts, getProductById } from '../controllers/productController.js
 
 const router = express.Router();
 
+/**
+ * mounted in server.js
+ */
+// /api/products/
 router.route('/').get(getProducts);
+
+// /api/products/:id
 router.route('/:id').get(getProductById);
 
 
