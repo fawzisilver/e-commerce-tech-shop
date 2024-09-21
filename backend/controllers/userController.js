@@ -91,6 +91,7 @@ const logoutUser = asyncHandler(async (req, res) => {
  * @access Private
  */
 const getUserProfile = asyncHandler(async (req, res) => {
+    // req.user is the the custom property from authMiddleware
     const user = await User.findById(req.user._id)
 
     if(user) {
@@ -115,7 +116,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if(user) {
-        user.name = req.body.name || user.name;
+        // new value || original value
+        user.name = req.body.name || user.name; //if left value is falsy then takes value on the right (original value)
         user.email = req.body.email || user.email;
 
         if (req.body.password) {

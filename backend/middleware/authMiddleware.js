@@ -13,7 +13,7 @@ const protect = asyncHandler(async(req, res, next) => {
     if (token) {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            // new property .user for req for global route access (has id, name, email, isAdmin except password)
+            //add new customer property req.user for req for global route access (has id, name, email, isAdmin except password)
             req.user = await User.findById(decoded.userId).select('-password')
             next(); //proceed with next route handler or middleware
         } catch (error) {
