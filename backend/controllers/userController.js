@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js'
 import User from '../models/userModel.js'
+import jwt from 'jsonwebtoken'
 
 
 /**
@@ -10,15 +11,28 @@ import User from '../models/userModel.js'
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email }) //has User mongoose db information if email matches
 
     if (user && (await user.matchPassword(password))) {
+        //.sign(payload, signed, expiration)
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: '30d'
+        });
+
+        // Set JWT as HTTP-only cookie
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== 'development',
+            sameSite: 'strict',
+            maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+        })
+
         // based on mongoDB document for user
         res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
         });
     } else {
         res.status(401);
