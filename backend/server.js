@@ -11,8 +11,13 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 
 connectDB(); // connect to mongoDB
-const app = express();
 const port = process.env.PORT || 5000;
+
+const app = express();
+
+// Body parser middleware (lets us extract req.body)
+app.use(express.json()); //raw json
+app.use(express.urlencoded({ extended: true}));
 
 app.use(cors());
 
