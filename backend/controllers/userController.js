@@ -51,7 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
                 password
             });
 
-
+            // automatic log in after creating account
             if (user) {
                 // creates token & saves it to cookie for future uses
                 generateToken(res, user._id)
