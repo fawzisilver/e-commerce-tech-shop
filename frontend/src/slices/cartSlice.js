@@ -12,6 +12,7 @@ const cartSlice = createSlice({
     
     reducers: {
         addToCart: (state, action) => {
+            // action.payload = contains the data you want to update
             const item = action.payload;
 
             const existItem = state.cartItems.find((x) => x._id === item._id);

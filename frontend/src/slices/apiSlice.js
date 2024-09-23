@@ -9,3 +9,4 @@ export const apiSlice = createApi({
     endpoints: () => ({}),
 });
 
+// reducer is automatically created by createApi, though it isn't explicility defined like in createSlice
