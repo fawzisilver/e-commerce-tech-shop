@@ -13,10 +13,13 @@ const authSlice = createSlice({
     reducers: {
         // action creator
         setCredentials: (state, action) => {
-            // state contains the newly carried data
-            state.userInfo = action.payload;
-            // update localStorage with updated data
-            localStorage.setItem('userInfo', JSON.stringify(action.payload))
+            if(action.payload) {
+                state.userInfo = action.payload;
+                localStorage.setItem('userInfo', JSON.stringify(action.payload));
+            } else {
+                console.error('Invalid payload for setCredentials:', action.payload)
+            }
+            
         }
     }
 })
@@ -29,3 +32,8 @@ export default authSlice.reducer;
 
 
 
+
+// // state contains the newly carried data
+// state.userInfo = action.payload;
+// // update localStorage with updated data
+// localStorage.setItem('userInfo', JSON.stringify(action.payload))

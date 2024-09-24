@@ -23,7 +23,11 @@ app.use(express.urlencoded({ extended: true}));
 // Cookie parser middleware
 app.use(cookieParser())
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // The URL of your frontend
+    credentials: true, // Allows sending cookies
+}));
+//previous app.use(cors());
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
