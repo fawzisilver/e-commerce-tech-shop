@@ -12,24 +12,24 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const dispatch = useDispatch(); // dispatch actions
+    const navigate = useNavigate(); // navigate to different routes
 
     const [login, { isLoading }] = useLoginMutation(); //isLoading and error is created by useLoginMutation
 
-    const { userInfo } = useSelector((state) => state.auth) //auth is the slice (has all info)
+    const { userInfo } = useSelector((state) => state.auth) //auth is the slice that contains the user state (has all info)
 
-    const { search } = useLocation();
-    const sp = new URLSearchParams(search); //sp is search params
-    const redirect = sp.get('redirect') || '/'; //(redirected to other page) if "redirect" in url e.g. (/login?redirect=/shipping) or homepage
+    const { search } = useLocation(); // redirect=/shipping (part of search property)
+    const sp = new URLSearchParams(search); // create URLSearchParams instance (to work with query string)
+    const redirect = sp.get('redirect') || '/'; // Get 'redirect' value (/shipping) or default to '/'
 
     useEffect(() => {
 
-        console.log(userInfo);
+        console.log("Userinfo meaning they logged in", userInfo);
         
         //if userInfo in localstorage
         if(userInfo) {
-            navigate(redirect);
+            navigate(redirect); //navigate(/shipping)
         }
     }, [userInfo, redirect, navigate])
 
@@ -38,9 +38,9 @@ const LoginScreen = () => {
         e.preventDefault();
         try {
             //login is from usestate (useLoginMutation)
-            const res = await login({ email, password }).unwrap(); //unwrap, unwraps the resolved promised value
-            dispatch(setCredentials({...res })) //sets to the localstorage based on user input (check this slice)
-            navigate(redirect)
+            const response = await login({ email, password }).unwrap(); //unwrap, unwraps the resolved promised value
+            dispatch(setCredentials({...response })) //sets to the localstorage based on user input (check this slice)
+            navigate(redirect) //the key is redirect and value is shipping 
         } catch(err) {
             toast.error(err?.data?.message || err.error) //? is to properly deal with undefined or null
         }
@@ -82,7 +82,8 @@ const LoginScreen = () => {
 
             <Row className="py-3">
                 <Col>
-                    New Customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
+                {/* go to /register?redirect=/shipping */}
+                    New Customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link> dd
                 </Col>
             </Row>
 
