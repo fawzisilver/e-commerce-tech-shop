@@ -20,12 +20,16 @@ const authSlice = createSlice({
                 console.error('Invalid payload for setCredentials:', action.payload)
             }
             
+        },
+        logout: (state, action) => {
+            state.userInfo = null;
+            localStorage.removeItem('userInfo')
         }
     }
 })
 
 // extracts the action creator from the slice
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions;
 
 // exports the reducer for use in the Redux store
 export default authSlice.reducer;
