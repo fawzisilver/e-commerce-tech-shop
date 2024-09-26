@@ -106,7 +106,7 @@ const RegisterScreen = () => {
             <Row className='py-3'>
                 <Col>
                     Already have an account?{' '}
-                    {/* if logged in, then go to /shipping .. otherwise to /login page */}
+                    {/* if logged in, then go to / (homepage) .. otherwise to /login page */}
                     <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Login</Link>
                 </Col>
             </Row>

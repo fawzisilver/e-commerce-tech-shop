@@ -40,7 +40,7 @@ const LoginScreen = () => {
             //login is from usestate (useLoginMutation)
             const response = await login({ email, password }).unwrap(); //unwrap, unwraps the resolved promised value
             dispatch(setCredentials({...response })) //sets to the localstorage based on user input (check this slice)
-            navigate(redirect) //the key is redirect and value is shipping 
+            navigate(redirect) //the key is redirect and value is /shipping or / 
         } catch(err) {
             toast.error(err?.data?.message || err.error) //? is to properly deal with undefined or null
         }
@@ -82,7 +82,7 @@ const LoginScreen = () => {
 
             <Row className="py-3">
                 <Col>
-                {/* go to /register?redirect=/shipping */}
+                {/* go to /register?redirect=/ otherwise from /login then just /register*/}
                     New Customer? 
                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link> 
                 </Col>
