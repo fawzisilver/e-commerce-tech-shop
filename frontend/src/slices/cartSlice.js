@@ -13,6 +13,7 @@ const cartSlice = createSlice({
     initialState,
     
     reducers: {
+        // action
         addToCart: (state, action) => {
             // action.payload = contains the data you want to update
             const item = action.payload;

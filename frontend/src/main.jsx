@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import './assets/styles/index.css'
 import './assets/styles/bootstrap.custom.css'
+import PrivateRoute from './components/PrivateRoute.jsx'
 import HomeScreen from './screens/HomeScreen.jsx' 
 import ProductScreen from './screens/ProductScreen.jsx'
 import CartScreen from './screens/CartScreen.jsx'
@@ -22,7 +23,12 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
-      <Route path="/shipping" element={<ShippingScreen />} />
+
+      <Route path='' element={<PrivateRoute />} > 
+      {/* these are outlets or nested childs only called if user is logged in */}
+       <Route path="/shipping" element={<ShippingScreen />} />
+      
+      </Route>
     </Route>
   )
 )
