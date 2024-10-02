@@ -23,7 +23,7 @@ const RegisterScreen = () => {
 
     const { search } = useLocation();
     const sp = new URLSearchParams(search);
-    const redirect = sp.get('redirect') || '/';
+    const redirect = sp.get('redirect') || '/'; //if sp contains a key name "redirect" then get its value
  
     useEffect(() => {
         if (userInfo) {
