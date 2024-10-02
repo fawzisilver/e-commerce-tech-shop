@@ -5,13 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import './assets/styles/index.css'
 import './assets/styles/bootstrap.custom.css'
-import PrivateRoute from './components/PrivateRoute.jsx'
 import HomeScreen from './screens/HomeScreen.jsx' 
 import ProductScreen from './screens/ProductScreen.jsx'
 import CartScreen from './screens/CartScreen.jsx'
 import LoginScreen from './screens/LoginScreen.jsx'
 import RegisterScreen from './screens/RegisterScreen.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 import ShippingScreen from './screens/ShippingScreen.jsx'
+import PaymentScreen from './screens/PaymentScreen.jsx'
+
 import { Provider } from 'react-redux'
 import store from './store.js'
 
@@ -27,7 +29,7 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute />} > 
       {/* these are outlets or nested childs only called if user is logged in */}
        <Route path="/shipping" element={<ShippingScreen />} />
-      
+       <Route path='/payment' element={<PaymentScreen />} />
       </Route>
     </Route>
   )

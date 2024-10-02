@@ -4,6 +4,7 @@ import FormContainer from '../components/FormContainer'
 import { useDispatch, useSelector } from 'react-redux' //access reducer (actions), global state of redux
 import { useNavigate } from 'react-router-dom' // navigate to different routes 
 import { saveShippingAddress } from '../slices/cartSlice'
+import CheckoutSteps from '../components/CheckoutSteps.jsx'
 
 const ShippingScreen = () => {
     const cart = useSelector((state) => state.cart); //retrieve state from cart slice with properies (cartItems, shippingAddress, and payment method)
@@ -28,6 +29,9 @@ const ShippingScreen = () => {
   return (
     <FormContainer>
         <h1>Shipping</h1>
+            {/* equivalent to <CheckoutSteps step1={true} step2={true} etc.. */}
+            {/* only step 1 and 2 are true on this screen */}
+            <CheckoutSteps step1 step2 />
 
         <Form onSubmit={submitHandler}>
             <Form.Group controlId='address' className='my-2'>
