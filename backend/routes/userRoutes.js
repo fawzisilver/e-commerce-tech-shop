@@ -1,7 +1,5 @@
 import express from "express";
-
-const router = express.Router();
-
+import { protect, admin} from '../middleware/authMiddleware.js'
 import {
     authUser,
     registerUser,
@@ -13,7 +11,11 @@ import {
     getUserById,
     updateUser
 } from '../controllers/userController.js'
-import { protect, admin} from '../middleware/authMiddleware.js'
+
+const router = express.Router();
+
+
+
 //based on /api/users/_____ <-- endpoint here
 router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.post('/logout', logoutUser)

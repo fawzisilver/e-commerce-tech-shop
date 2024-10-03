@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 import productRoutes from "./routes/productRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import orderRoutes from './routes/orderRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 
@@ -31,6 +32,7 @@ app.use(cors({
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 //overriding express error handler
 app.use(notFound);

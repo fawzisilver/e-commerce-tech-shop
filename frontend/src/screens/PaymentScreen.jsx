@@ -23,6 +23,9 @@ const PaymentScreen = () => {
     }, [shippingAddress, navigate])
 
     const submitHandler = (e) => {
+        // e.preventDefault();
+        // dispatch(savePaymentMethod(paymentMethod));
+        // navigate('/placeorder')
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
         navigate('/placeorder')
@@ -42,7 +45,7 @@ const PaymentScreen = () => {
                     label='PayPal or Credit Card'
                     id='PayPal'
                     name='paymentMethod'
-                    value='PayPal'
+                    value={paymentMethod}
                     checked
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     >
@@ -55,6 +58,7 @@ const PaymentScreen = () => {
             </Button>
         </Form>
     </FormContainer>
+    
   )
 }
 
