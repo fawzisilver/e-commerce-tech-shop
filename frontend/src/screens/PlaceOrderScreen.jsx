@@ -27,6 +27,7 @@ const PlaceOrderScreen = () => {
 
     const placeOrderHandler = async () => {
         try {
+            // becomes the res.body for addOrderItems 
             const res = await createOrder({
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,
@@ -38,7 +39,7 @@ const PlaceOrderScreen = () => {
             }).unwrap();
 
             dispatch(clearCartItems());
-            navigate(`/orders/${res._id}`)
+            navigate(`/order/${res._id}`)
         } catch (error) {
             toast.error(error);
         }
