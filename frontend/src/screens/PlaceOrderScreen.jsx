@@ -12,7 +12,7 @@ import { clearCartItems } from "../slices/cartSlice.js"
 const PlaceOrderScreen = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart);
+    const cart = useSelector((state) => state.cart); //global state of redux
 
     const [createOrder, { isLoading, error}] = useCreateOrderMutation();
 
