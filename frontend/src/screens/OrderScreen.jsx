@@ -44,7 +44,49 @@ const OrderScreen = () => {
         }
     }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal])
 
-    console.log(order);
+    useEffect(() => {
+        console.log('Order data after refetch', order)
+    }, [order])
+
+    console.log('Checking if order exist:', order);
+
+
+    function onApprove(data, actions) {
+        return actions.order.capture().then(async function (details) {    //details is from paypal
+            try {
+                await payOrder({orderId, details});
+                refetch();
+                toast.success('Payment successfully')
+            } catch (err) {
+                toast.error(err?.data?.message || err.message)
+            }
+        })   
+    }
+   async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} }});
+    refetch();
+    toast.success('Payment successfully')
+   }
+
+    function onError(err) {
+        toast.error(err.message)
+    }
+    
+    function createOrder(data, actions) {
+        return actions.order.create({
+            purchase_units: [
+                {
+                    amount: {
+                        value: order.totalPrice,
+                    }
+                }
+            ]
+        }).then((orderId) => {
+            return orderId;
+        })
+    }
+
+
     
   return (
     isLoading ? <Loader /> : error ? <Message variant="danger"/> : (
@@ -99,7 +141,7 @@ const OrderScreen = () => {
                                             <Link to={`/product/${item.product}`}>{item.name}</Link> 
                                         </Col>
                                         <Col md={4}>
-                                        {item.qty} x {item.price} = $ {item.qty * item.price}
+                                        {item.qty} x {item.price} = $ {(item.qty * item.price).toFixed(2)}
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
@@ -117,25 +159,43 @@ const OrderScreen = () => {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items</Col>
-                                    <Col>$ {order.itemsPrice}</Col>
+                                    <Col>$ {order.itemsPrice.toFixed(2)}</Col>
                                 </Row>
 
                                 <Row>
                                     <Col>Shipping</Col>
-                                    <Col>${order.shippingPrice}</Col>
+                                    <Col>${order.shippingPrice.toFixed(2)}</Col>
                                 </Row>
 
                                 <Row>
                                     <Col>Tax</Col>
-                                    <Col>${order.taxPrice}</Col>
+                                    <Col>${order.taxPrice.toFixed(2)}</Col>
                                 </Row>
 
                                 <Row>
                                     <Col>Total</Col>
-                                    <Col>{order.totalPrice}</Col>
+                                    <Col>${order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
-                            {/* PAY ORDER PLACEHOLDER*/}
+                            {/* PAY ORDER */}
+                            { !order.isPaid && (
+                                <ListGroup.Item>
+                                    {isLoading && <Loader />}
+
+                                    {isPending ? <Loader /> : (
+                                        <div>
+                                            <Button onClick={onApproveTest} style={{marginBottom: '10px'}}>Test Pay Order</Button>
+                                            <div>
+                                                <PayPalButtons
+                                                    createOrder={createOrder}
+                                                    onApprove={onApprove}
+                                                    onError={onError}
+                                                ></PayPalButtons>
+                                            </div>
+                                        </div> 
+                                    )} 
+                                </ListGroup.Item>
+                            )}
                             {/* MARK AS DELIVERED PLACEHOLDER*/}
 
                         </ListGroup>

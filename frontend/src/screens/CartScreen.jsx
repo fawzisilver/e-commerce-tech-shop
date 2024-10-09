@@ -26,6 +26,8 @@ const CartScreen = () => {
         navigate('/login?redirect=/shipping')
     }
 
+    console.log(cartItems)
+    console.log(`Checking for itemsPrice ${cart.itemsPrice}`)
   return (
     <Row>
         <Col md={8}>

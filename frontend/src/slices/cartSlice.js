@@ -26,7 +26,7 @@ const cartSlice = createSlice({
             } else {
                 state.cartItems = [...state.cartItems, item];
             }
-
+            
             //updated state is returned to redux
             return updateCart(state);
         },
