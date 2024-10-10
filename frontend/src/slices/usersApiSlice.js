@@ -12,6 +12,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             }),
         }),
 
+        // sends a POST request to /api/users create a new user on the server with the body (data).
         register: builder.mutation({
             query: (data) => ({
                 url: `${USERS_URL}`,
@@ -25,10 +26,18 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 url: `${USERS_URL}/logout`,
                 method: 'POST',
             })
+        }),
+
+        profile: builder.mutation({
+            query: (data) => ({
+                url: `${USERS_URL}/profile`,
+                method: 'PUT',
+                body: data,
+            })
         })
     })
 })
 
 // add prefix "use" and suffix "mutation"
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation } = usersApiSlice;
 
