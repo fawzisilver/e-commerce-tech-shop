@@ -74,7 +74,7 @@ const getOrderById = asyncHandler(async (req, res) => {
  * @access Private
 */
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id)
+    const order = await Order.findById(req.params.id) //get id from url parameter
 
     if (order) {
         order.isPaid = true;
