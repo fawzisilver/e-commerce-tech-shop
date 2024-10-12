@@ -37,7 +37,4 @@ export default authSlice.reducer;
 
 
 
-// // state contains the newly carried data
-// state.userInfo = action.payload;
-// // update localStorage with updated data
-// localStorage.setItem('userInfo', JSON.stringify(action.payload))
+

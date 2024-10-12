@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { useDispatch, useSelector } from 'react-redux' //access reducer (actions), global state of redux
 import { useNavigate } from 'react-router-dom' // navigate to different routes 
-import { saveShippingAddress } from '../slices/cartSlice'
+import { saveShippingAddress } from '../slices/cartSlice.js'
 import CheckoutSteps from '../components/CheckoutSteps.jsx'
 
 const ShippingScreen = () => {
