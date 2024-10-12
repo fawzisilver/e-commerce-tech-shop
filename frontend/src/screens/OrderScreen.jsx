@@ -4,7 +4,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message.jsx'
 import Loader from '../components/Loader.jsx'
 import { PayPalButtons, usePayPalScriptReducer} from '@paypal/react-paypal-js'
-import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery } from '../slices/ordersApiSlice.js'
+import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery, useDeliverOrderMutation } from '../slices/ordersApiSlice.js'
 import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 
@@ -16,6 +16,8 @@ const OrderScreen = () => {
     const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId)
 
     const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+
+    const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
 
     const [{ isPending}, paypalDispatch] = usePayPalScriptReducer();
 
@@ -48,8 +50,16 @@ const OrderScreen = () => {
         console.log('Order data after refetch', order)
     }, [order])
 
-    console.log('Checking if order exist:', order);
 
+    const deliverOrderHandler = async () => {
+        try {
+            await deliverOrder(orderId);
+            refetch();
+            toast.success('Order delivered')
+        } catch(err) {
+            toast.error(err?.data?.message || err.message)
+        }
+    }
 
     function onApprove(data, actions) {
         return actions.order.capture().then(async function (details) {    //details is from paypal
@@ -109,7 +119,7 @@ const OrderScreen = () => {
                                 {' '}{order.shippingAddress.postalCode} {order.shippingAddress.country}
                             </p>
                             {order.isDelivered ? (
-                                <Message variant='flush'>Delivered on {order.deliveredAt}</Message>
+                                <Message variant='success'>Delivered on {order.deliveredAt}</Message>
                             ) : (
                                 <Message variant="danger">Not Delivered</Message>
                             ) }
@@ -197,6 +207,17 @@ const OrderScreen = () => {
                                 </ListGroup.Item>
                             )}
                             {/* MARK AS DELIVERED PLACEHOLDER*/}
+                            {loadingDeliver && <Loader />}
+                            {/**if authenticated, is an admin, paid the order, is not delivered yet then ... */}
+                            {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                 <ListGroup.Item>
+                                    <Button type='button' className='btn btn-block'
+                                        onClick={deliverOrderHandler}>
+                                            Mark as Delivered
+                                        </Button>
+                                 </ListGroup.Item>
+                            )}
+
 
                         </ListGroup>
                     </Card>
