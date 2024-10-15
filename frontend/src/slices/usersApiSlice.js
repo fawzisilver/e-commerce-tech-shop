@@ -1,5 +1,5 @@
-import { USERS_URL } from "../constants";
-import { apiSlice } from "./apiSlice"; //parent to usersApiSlice
+import { USERS_URL } from "../constants.js";
+import { apiSlice } from "./apiSlice.js"; //parent to usersApiSlice
 
 // defines user related API endpoints
 export const usersApiSlice = apiSlice.injectEndpoints({
@@ -47,6 +47,20 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 url: `${USERS_URL}/${userId}`,
                 method: 'DELETE'
             })
+        }),
+        getUserDetails: builder.query({
+            query: (userId) => ({
+                url: `${USERS_URL}/${userId}`
+            }),
+            keepUnusedDataFor: 5, 
+        }),
+        updateUser: builder.mutation({
+            query: (data) => ({
+                url: `${USERS_URL}/${data.userId}`,
+                method: 'PUT',
+                body: data,
+            }),
+            invalidatesTags: ['User']
         })
 
     })
@@ -59,5 +73,7 @@ export const {
     useRegisterMutation,
     useProfileMutation,
     useGetUsersQuery,
-    useDeleteUserMutation } = usersApiSlice;
+    useDeleteUserMutation,
+    useGetUserDetailsQuery,
+    useUpdateUserMutation } = usersApiSlice;
 
