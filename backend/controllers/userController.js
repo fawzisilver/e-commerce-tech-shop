@@ -168,7 +168,9 @@ const deleteUser = asyncHandler(async (req, res) => {
  * @access Private/Admin
  */
 const getUsers = asyncHandler(async (req, res) => {
-    res.send('get users')
+    const users = await User.find({});
+
+    res.status(200).json(users)
 });
 
 /**
@@ -177,7 +179,14 @@ const getUsers = asyncHandler(async (req, res) => {
  * @access Private/Admin
  */
 const getUserById = asyncHandler(async (req, res) => {
-    res.send('get user by id')
+    const user = await User.findById(req.params.id).select('-password');
+
+    if (user) {
+        res.status(200).json(user);
+    } else {
+        res.status(404);
+        throw new Error('User not found')
+    }
 });
 
 /**
