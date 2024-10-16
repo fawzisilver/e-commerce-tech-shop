@@ -4,6 +4,10 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ input[type="radio"] {
+  accent-color: green; /* Change this to your desired color */
+}
+ 
 :root,
 [data-bs-theme='light'] {
   --bs-blue: #3c4c5d;

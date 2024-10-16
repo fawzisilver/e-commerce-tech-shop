@@ -43,9 +43,9 @@ const ProductScreen = () => {
         ) : error ? (
             <Message variant='danger'>{error?.data.message || error.error}</Message>
         ) : (
-             <Row>
+             <Row className='mt-3'>
              <Col md={5}>
-                 <Image src={product.image} alt={product.name} fluid />
+                 <Image src={product.image} alt={product.name} className='image-hover'fluid rounded/>
              </Col>
              <Col md={4}>
                  <ListGroup variant='flush'>
@@ -59,11 +59,11 @@ const ProductScreen = () => {
                      </ListGroup.Item>
  
                      <ListGroup.Item>
-                         Price: ${product.price}
+                         <span className='fw-semibold'>Price:</span> ${product.price}
                      </ListGroup.Item>
  
                      <ListGroup.Item>
-                         Description: {product.description}
+                         <span className='fw-semibold'>Description:</span> <span className='fw-light'>{product.description}</span>
                      </ListGroup.Item>
                  </ListGroup>
              </Col>
@@ -72,7 +72,7 @@ const ProductScreen = () => {
                      <ListGroup variant="flush">
                          <ListGroup.Item>
                              <Row>
-                                 <Col>Price:</Col>
+                                 <Col className='fw-semibold'>Price:</Col>
                                  <Col>
                                      <strong>${product.price}</strong>
                                  </Col>
@@ -81,7 +81,7 @@ const ProductScreen = () => {
  
                          <ListGroup.Item>
                              <Row>
-                                 <Col>Status:</Col>
+                                 <Col className='fw-semibold'>Status:</Col>
                                  <Col>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Col>
                              </Row>
                          </ListGroup.Item>
@@ -89,7 +89,7 @@ const ProductScreen = () => {
                         {product.countInStock > 0 && (
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Qty</Col>
+                                    <Col className='fw-semibold'>Qty</Col>
                                     <Col>
                                         <Form.Control as='select' value={qty} onChange={(e) => setQty(Number(e.target.value))}>
                                             {[...Array(product.countInStock).keys()].map((x) => (
@@ -105,8 +105,8 @@ const ProductScreen = () => {
                         )}
 
                          <ListGroup.Item>
-                             <Button
-                                 className='btn-block'
+                             <Button 
+                                 className='btn-hover bg-white text-black border-dark-subtle'
                                  type='button'
                                  disabled={product.countInStock === 0}    
                                  onClick={addToCartHandler}
@@ -119,7 +119,7 @@ const ProductScreen = () => {
                      </ListGroup>
                  </Card>
              </Col>
- 
+            <hr className='mt-3'/>
          </Row>
         ) }
        

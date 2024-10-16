@@ -96,7 +96,7 @@ const RegisterScreen = () => {
                 <Button
                     type="submit"
                     variant='primary'
-                    className='mt-2'
+                    className='mt-2 custom-button btn-hover'
                     disabled={isLoading}
                 >Register</Button>
 
@@ -107,7 +107,7 @@ const RegisterScreen = () => {
                 <Col>
                     Already have an account?{' '}
                     {/* if logged in, then go to / (homepage) .. otherwise to /login page */}
-                    <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Login</Link>
+                    <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className="custom-link custom-link-hover">Login</Link>
                 </Col>
             </Row>
         </FormContainer>

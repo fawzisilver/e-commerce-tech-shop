@@ -45,7 +45,7 @@ const CartScreen = () => {
                                     <Image src={item.image} alt={item.name} fluid rounded />
                                 </Col>
                                 <Col md={3}>
-                                    <Link to={`/product/${item._id}`}>{item.name}</Link>
+                                    <Link to={`/product/${item._id}`} className="custom-link custom-link-hover">{item.name}</Link>
                                 </Col>
                                 <Col md={2}>
                                     ${item.price}
@@ -85,7 +85,7 @@ const CartScreen = () => {
                         ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <Button disabled={cartItems.length === 0} onClick={checkOutHandler}>
+                        <Button disabled={cartItems.length === 0} onClick={checkOutHandler} className='btn-hover bg-white text-black border-dark-subtle'>
                             Proceed to Checkout
                         </Button>
                     </ListGroup.Item>

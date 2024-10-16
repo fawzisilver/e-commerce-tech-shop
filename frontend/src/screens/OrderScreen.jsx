@@ -148,7 +148,7 @@ const OrderScreen = () => {
                                         </Col>
                                         <Col>
                                         {/* item.product (using the ref of product schema) */}
-                                            <Link to={`/product/${item.product}`}>{item.name}</Link> 
+                                            <Link to={`/product/${item.product}`} className='custom-link custom-link-hover'>{item.name}</Link> 
                                         </Col>
                                         <Col md={4}>
                                         {item.qty} x {item.price} = $ {(item.qty * item.price).toFixed(2)}

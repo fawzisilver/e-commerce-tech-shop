@@ -73,7 +73,7 @@ const LoginScreen = () => {
                 </Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant='primary' className="mt-2" disabled={isLoading}>
+            <Button type="submit" variant='primary' className="mt-2 custom-button btn-hover" disabled={isLoading}>
                 Sign In
             </Button>
 
@@ -83,8 +83,8 @@ const LoginScreen = () => {
             <Row className="py-3">
                 <Col>
                 {/* go to /register?redirect=/ otherwise from /login then just /register*/}
-                    New Customer? 
-                    <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link> 
+                    New Customer? {' '}
+                    <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className="custom-link custom-link-hover">Register</Link> 
                 </Col>
             </Row>
 

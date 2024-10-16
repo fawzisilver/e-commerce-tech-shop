@@ -78,7 +78,7 @@ const PlaceOrderScreen = () => {
                                                 <Image src={item.image} alt={item.name} fluid rounded/>                                    
                                             </Col>
                                             <Col>
-                                                <Link to={`/products/${item.product}`}>{item.name}</Link>
+                                                <Link to={`/products/${item.product}`} className="custom-link custom-link-hover">{item.name}</Link>
                                             </Col>
                                             <Col md={4}>
                                                 { item.qty } x { item.price} = ${item.qty * item.price}
@@ -137,7 +137,7 @@ const PlaceOrderScreen = () => {
                         <ListGroup.Item>
                             <Button 
                             type="button"
-                            className="btn-block"
+                            className="btn-block bg-white text-black border-dark-subtle btn-hover"
                             disabled={cart.cartItems.length === 0}
                             onClick={placeOrderHandler}
                             >

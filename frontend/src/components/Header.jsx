@@ -33,8 +33,9 @@ const Header = () => {
     }
 
   return (
-    <header>
-        <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
+    <header> 
+        {/* bg="dark" */}
+        <Navbar  className='custom-navbar' variant="dark" expand="md" collapseOnSelect>
             <Container>
                 <LinkContainer to="/">
                   <Navbar.Brand>
@@ -62,11 +63,11 @@ const Header = () => {
                         (
                             <NavDropdown title={userInfo.name} id='username'>
                                 <LinkContainer to="/profile">
-                                    <NavDropdown.Item>
+                                    <NavDropdown.Item className='bg-white text-black border-dark-subtle btn-hover'>
                                         Profile
                                     </NavDropdown.Item>
                                  </LinkContainer>
-                                 <NavDropdown.Item onClick={logoutHandler}>
+                                 <NavDropdown.Item onClick={logoutHandler} className='bg-white text-black border-dark-subtle btn-hover'>
                                     Logout
                                  </NavDropdown.Item>
                             </NavDropdown>) 
