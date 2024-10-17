@@ -42,6 +42,7 @@ const ProductScreen = () => {
         e.preventDefault();
 
         try {
+            // rating, comment from useState (user response) and id is useparams
             await createReview({
                 productId,
                 rating,

@@ -5,8 +5,12 @@ import { apiSlice } from "./apiSlice"; //parent to productsApiSlice
 export const productsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query({
-            query: () => ({
+            query: ({ pageNumber }) => ({   //destructuring passed pageNumber
                 url: PRODUCTS_URL, // /api/products
+                params: {
+                    pageNumber, // sends pageNumber as query parameter (e.g. ?pageNumber=3)
+                }
+
             }),
             providesTags: ['Products'],
             keepUnusedDataFor: 5, //removes the data from cache after 5secs (keep things fresh)
@@ -22,7 +26,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                 url: PRODUCTS_URL,
                 method: 'POST',
             }),
-            invalidatesTags: ['Product']
+            invalidatesTags: ['Product']    // refetches to get new data (no stale data)
         }),
         updateProduct: builder.mutation({
             query: (data) => ({
@@ -46,6 +50,18 @@ export const productsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Products'],
         })
+        /** Example of full query object    
+         *    getProductDetails: builder.query({
+            query: (id) => ({
+              url: `/api/products/${id}`,
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              credentials: 'include',
+            }),
+          }),
+           */
 
     }),
 })

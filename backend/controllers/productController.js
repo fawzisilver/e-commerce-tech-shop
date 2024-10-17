@@ -4,13 +4,21 @@ import Product from '../models/productModel.js'
 
 /**
  * @desc Fetch all products
- * @route GET /api/products
+ * @route GET /api/products   & /api/products/page/:pageNumber
  * @access Public
  */
 const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
+    const pageSize = 2;// number of products to be displayed per page
 
-    res.json(products)
+    const page = Number(req.query.pageNumber) || 1; // gets the current page number (/api/products?pageNumbers=3 then page=3) or 
+    const count = await Product.countDocuments(); //count the number of total products
+
+    const products = await Product.find({})
+    .limit(pageSize)    // limit the number of products returned (e.g. only 2 products if pageSize=2)
+    .skip(pageSize * (page -1 )); 
+    res.json({ products,                    // products fetched with pagination
+               page,                        // current page number
+               pages: Math.ceil(count/ pageSize)})  //total number of pages (ceil(), rounds up to next whole number)
 });
 
 
