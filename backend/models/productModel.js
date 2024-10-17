@@ -19,7 +19,7 @@ const reviewSchema = mongoose.Schema({
         type: String,
         required: true,
     }
-});
+}, {timestamps: true });
 
 
 const productSchema = new mongoose.Schema({
