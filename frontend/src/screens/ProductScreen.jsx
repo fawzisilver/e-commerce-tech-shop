@@ -106,7 +106,7 @@ const ProductScreen = () => {
 
                          <ListGroup.Item>
                              <Button 
-                                 className='btn-hover bg-white text-black border-dark-subtle'
+                                 className='btn-hover btn-light text-black border-dark-subtle'
                                  type='button'
                                  disabled={product.countInStock === 0}    
                                  onClick={addToCartHandler}

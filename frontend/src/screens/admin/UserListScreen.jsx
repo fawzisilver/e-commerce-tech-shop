@@ -45,7 +45,7 @@ const UserListScreen = () => {
                         <tr key={user._id}>
                             <td>{user._id}</td>
                             <td>{user.name}</td>
-                            <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
+                            <td><a href={`mailto:${user.email}`} className="custom-link-italic custom-link-hover">{user.email}</a></td>
                             <td>{user.isAdmin ? (
                                 <FaCheck style={{ color: 'green' }}/>
                             ) : (

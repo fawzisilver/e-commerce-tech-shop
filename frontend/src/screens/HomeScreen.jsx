@@ -35,21 +35,6 @@ const HomeScreen = () => {
 export default HomeScreen
 
 
-
-  // const [products, setProducts] = useState([]);
- 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const { data } = await axios.get('http://localhost:5000/api/products');
-  //       setProducts(data);
-  //     } catch(error) {
-  //       throw new Error('Error fetching data: ', error);
-  //     }
-  //   }
-
-  //   fetchProducts();
-  // }, [])
   
  
 

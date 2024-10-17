@@ -211,7 +211,7 @@ const OrderScreen = () => {
                             {/**if authenticated, is an admin, paid the order, is not delivered yet then ... */}
                             {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                  <ListGroup.Item>
-                                    <Button type='button' className='btn btn-block'
+                                    <Button type='button' className='btn btn-block bg-white text-black border-dark-subtle btn-hover'
                                         onClick={deliverOrderHandler}>
                                             Mark as Delivered
                                         </Button>

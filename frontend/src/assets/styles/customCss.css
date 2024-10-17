@@ -1,4 +1,6 @@
 
+
+
 .custom-navbar {
     background-color: rgb(33,37,41);
     color: white;
@@ -19,6 +21,12 @@
     text-decoration: none;
     color: rgb(33,37,41);
    
+}
+
+.custom-link-italic {
+    color: rgb(33,37,41);
+    font-style: italic;
+    text-decoration: none;
 }
 
 .custom-link-hover:hover {
@@ -88,3 +96,13 @@
 
 }
 
+
+/* table */
+.table-lg {
+    width: 100%;
+}
+
+.table-lg th,
+.table-lg td {
+    padding: 1rem;
+}

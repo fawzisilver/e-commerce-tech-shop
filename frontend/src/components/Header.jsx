@@ -1,7 +1,8 @@
 import { Badge, Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import { FaShoppingCart, FaUser } from 'react-icons/fa'
 import { LinkContainer} from 'react-router-bootstrap'
-import logo from '../assets/logo.png'
+// import logo from '../assets/logo.png'
+import logo from '../assets/techshop.png'
 import { useSelector } from 'react-redux' //select global state from redux store
 import { useNavigate } from 'react-router-dom'
 import { useDispatch  } from 'react-redux'
@@ -39,7 +40,7 @@ const Header = () => {
             <Container>
                 <LinkContainer to="/">
                   <Navbar.Brand>
-                    <img src={logo} alt="logo"/>
+                    <img src={logo} alt="logo" style={{ height: '50px', width: '50px' }}/>
                     Tech Shop
                  </Navbar.Brand>
                 </LinkContainer>
@@ -83,19 +84,19 @@ const Header = () => {
 
                     { userInfo && userInfo.isAdmin && (
                         <NavDropdown title="Admin">
-                            <LinkContainer to="/admin/orderlist">
+                            <LinkContainer to="/admin/orderlist" className='bg-white text-black border-dark-subtle btn-hover'>
                                 <NavDropdown.Item>
                                    Orders
                                 </NavDropdown.Item>
                             </LinkContainer>
 
-                            <LinkContainer to='/admin/productlist'>
+                            <LinkContainer to='/admin/productlist' className='bg-white text-black border-dark-subtle btn-hover'>
                                 <NavDropdown.Item>
                                     Products
                                 </NavDropdown.Item>
                             </LinkContainer>
 
-                            <LinkContainer to='/admin/userlist'>
+                            <LinkContainer to='/admin/userlist' className='bg-white text-black border-dark-subtle btn-hover'>
                                 <NavDropdown.Item>
                                     Users
                                 </NavDropdown.Item>

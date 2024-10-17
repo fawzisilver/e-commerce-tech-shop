@@ -132,7 +132,7 @@ const ProductEditScreen = () => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant="primary" className="my-2">Update</Button>
+            <Button type='submit' variant="primary" className="my-2 text-black border-dark-subtle btn-hover btn-light">Update</Button>
           </Form>
         )}
       </FormContainer>

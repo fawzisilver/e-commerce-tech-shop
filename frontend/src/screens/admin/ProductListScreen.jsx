@@ -47,7 +47,7 @@ const ProductListScreen = () => {
                 <h1>Products</h1>
             </Col>
             <Col className="text-end">
-                <Button onClick={createProductHandler} className="btn-sm m-3"><FaEdit /> Create Product</Button>
+                <Button onClick={createProductHandler} className="btn-sm m-3 bg-white text-black border-dark-subtle btn-hover"><FaEdit /> Create Product</Button>
             </Col>
         </Row>
 
@@ -55,7 +55,7 @@ const ProductListScreen = () => {
         { loadingDelete && <Loader />}
         {isLoading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
             <>
-                <Table striped hover responsive className="table-sm">
+                <Table striped hover responsive className="table-md">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -68,7 +68,7 @@ const ProductListScreen = () => {
                     </thead>
                     <tbody>
                         {products?.map((product) => (
-                            <tr key={product._id}>
+                            <tr key={product._id} className="fs-6">
                                 <td>{product._id}</td>
                                 <td>{product.name}</td>
                                 <td>$ {product.price}</td>
