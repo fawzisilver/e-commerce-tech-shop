@@ -8,7 +8,7 @@ import Product from '../models/productModel.js'
  * @access Public
  */
 const getProducts = asyncHandler(async (req, res) => {
-    const pageSize = 1;// number of products to be displayed per page
+    const pageSize = 3;// number of products to be displayed per page
 
     const page = Number(req.query.pageNumber) || 1; // gets the current page number (/api/products?pageNumbers=3 then page=3) or 
 

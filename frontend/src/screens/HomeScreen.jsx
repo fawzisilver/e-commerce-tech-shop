@@ -1,4 +1,5 @@
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Product from '../components/Product'
 import { useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../slices/productsApiSlice.js'
@@ -17,11 +18,12 @@ const HomeScreen = () => {
 
   return (
     <>
+    { keyword && <Link to="/" className='btn btn-light mb-3'>Go back</Link>}
       {isLoading ? (
         <Loader />
       ) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (
         <>
-        <h1 className='custom-text mb-3 fw-light'>Latest Products</h1>
+        <h1 className='custom-text fw-light'>Latest Products</h1>
         <Row>
           {/* from res.json({ products, page, pages }) (backend)*/}
             {data.products.map((product)=>(
