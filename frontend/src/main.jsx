@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import './assets/styles/index.css'
 // import './assets/styles/bootstrap.custom.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css' (mayve not needed)
 import './assets/styles/customCss.css'
 import HomeScreen from './screens/HomeScreen.jsx' 
 import ProductScreen from './screens/ProductScreen.jsx'
@@ -34,7 +34,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/search/:keyword" element={<HomeScreen />}/>
       <Route path="/page/:pageNumber" element={<HomeScreen />} />
+      <Route path="/search/:keyword/page/:pageNumber" element={<HomeScreen />} />
       <Route path="/product/:id" element={<ProductScreen />} />
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />

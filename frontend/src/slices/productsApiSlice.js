@@ -5,9 +5,10 @@ import { apiSlice } from "./apiSlice"; //parent to productsApiSlice
 export const productsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query({
-            query: ({ pageNumber }) => ({   //destructuring passed pageNumber
+            query: ({ keyword, pageNumber }) => ({   //destructuring passed pageNumber
                 url: PRODUCTS_URL, // /api/products
                 params: {
+                    keyword,    // e.g. ?keyword=iphone
                     pageNumber, // sends pageNumber as query parameter (e.g. ?pageNumber=3)
                 }
 

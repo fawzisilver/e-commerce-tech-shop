@@ -8,12 +8,18 @@ import Product from '../models/productModel.js'
  * @access Public
  */
 const getProducts = asyncHandler(async (req, res) => {
-    const pageSize = 2;// number of products to be displayed per page
+    const pageSize = 1;// number of products to be displayed per page
 
     const page = Number(req.query.pageNumber) || 1; // gets the current page number (/api/products?pageNumbers=3 then page=3) or 
-    const count = await Product.countDocuments(); //count the number of total products
 
-    const products = await Product.find({})
+    // For Search feature ($regex is part of mongoDb)
+    const keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' }} : {} // $options: 'i' (aka insensitive)
+
+    //({...keyword}) to find or match only that matches keyword (same as below find({...keyword}))
+    const count = await Product.countDocuments({...keyword}); //count the number of total products
+
+
+    const products = await Product.find({...keyword})
     .limit(pageSize)    // limit the number of products returned (e.g. only 2 products if pageSize=2)
     .skip(pageSize * (page -1 )); 
     res.json({ products,                    // products fetched with pagination

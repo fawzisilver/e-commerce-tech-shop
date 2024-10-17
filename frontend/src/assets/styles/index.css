@@ -1,10 +1,18 @@
 
-
+:root {
+  --bs-link-color: #3c4c5d;
+}
 main {
   min-height: 80vh;
 }
 
+a {
+  color: var(--bs-link-color)
+}
 
+a:hover {
+  color: darken(var(--bs-link-color), 10%);
+}
 
 .rating span {
   margin: 0.1rem;

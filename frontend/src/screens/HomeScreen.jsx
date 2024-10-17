@@ -10,11 +10,11 @@ import Paginate from '../components/Paginate.jsx'
 // import { useEffect, useState } from 'react';
 
 const HomeScreen = () => {
-  const { pageNumber } = useParams(); //path parameter (not query parameter unlike the getProducts backend [it is query param])
+  const { keyword, pageNumber } = useParams(); //path parameter (not query parameter unlike the getProducts backend [it is query param])
 
-  const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
+  const { data, isLoading, error } = useGetProductsQuery({ keyword, pageNumber });
   console.log('From HomeScreen', data)
-//ternary op
+
   return (
     <>
       {isLoading ? (
@@ -30,7 +30,7 @@ const HomeScreen = () => {
                 </Col>
             ))}
         </Row>
-          <Paginate pages={data.pages} page={data.page} />
+          <Paginate pages={data.pages} page={data.page} keyword={keyword ? keyword : ''}/>
         </>
       )}
     </>
