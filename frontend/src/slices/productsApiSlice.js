@@ -1,5 +1,5 @@
-import { getTopProducts } from "../../../backend/controllers/productController";
-import { PRODUCTS_URL } from "../constants";
+// import { getTopProducts } from "../../../backend/controllers/productController";
+import { PRODUCTS_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice"; //parent to productsApiSlice
 
 // inject new product-related endpoitns into the apiSlice
@@ -57,6 +57,14 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                 url: `${PRODUCTS_URL}/top`,
             }),
             keepUnusedDataFor: 5,
+        }),
+        uploadProductImage: builder.mutation({
+            query: (data) => ({
+                // /api/upload
+                url: `${UPLOAD_URL}`,  
+                method: 'POST',
+                body: data,
+            }),
         })
 
       
@@ -71,6 +79,7 @@ export const { useGetProductsQuery,
     useUpdateProductMutation,
     useDeleteProductMutation,
     useCreateReviewMutation,
-    useGetTopProductsQuery } = productsApiSlice;
+    useGetTopProductsQuery,
+useUploadProductImageMutation } = productsApiSlice;
 
 
