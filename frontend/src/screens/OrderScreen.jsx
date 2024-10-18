@@ -61,26 +61,24 @@ const OrderScreen = () => {
         }
     }
 
-    function onApprove(data, actions) {
-        return actions.order.capture().then(async function (details) {    //details is from paypal
-            try {
-                await payOrder({orderId, details});
-                refetch();
-                toast.success('Payment successfully')
-            } catch (err) {
-                toast.error(err?.data?.message || err.message)
-            }
-        })   
-    }
-   async function onApproveTest() {
-    await payOrder({ orderId, details: { payer: {} }});
-    refetch();
-    toast.success('Payment successfully')
-   }
-
-    function onError(err) {
-        toast.error(err.message)
-    }
+    
+    /** Test  */
+//    async function onApproveTest() {
+//     await payOrder({ orderId, details: { payer: {} }});
+//     refetch();
+//     toast.success('Payment successfully')
+//    }
+function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {    //details is from paypal
+        try {
+            await payOrder({orderId, details});
+            refetch();
+            toast.success('Payment successfully')
+        } catch (err) {
+            toast.error(err?.data?.message || err.message)
+        }
+    })   
+}
     
     function createOrder(data, actions) {
         return actions.order.create({
@@ -94,6 +92,10 @@ const OrderScreen = () => {
         }).then((orderId) => {
             return orderId;
         })
+    }
+
+    function onError(err) {
+        toast.error(err.message)
     }
 
 
@@ -194,7 +196,7 @@ const OrderScreen = () => {
 
                                     {isPending ? <Loader /> : (
                                         <div>
-                                            <Button onClick={onApproveTest} style={{marginBottom: '10px'}}>Test Pay Order</Button>
+                                            {/* <Button onClick={onApproveTest} style={{marginBottom: '10px'}}>Test Pay Order</Button> */}
                                             <div>
                                                 <PayPalButtons
                                                     createOrder={createOrder}
