@@ -11,6 +11,7 @@ import { Spinner } from 'react-bootstrap'
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
+import Meta from '../components/Meta.jsx';
 // import products from '../products'
 // import axios from 'axios'
 
@@ -70,12 +71,13 @@ const ProductScreen = () => {
             <Message variant='danger'>{error?.data.message || error.error}</Message>
         ) : (
             <>
-             <Row className='mt-3'>
+             <Meta title={product.name}/>
+             <Row>
              <Col md={5}>
-                 <Image src={product.image} alt={product.name} className='image-hover'fluid rounded/>
+                 <Image src={product.image} alt={product.name} className='image-hover shadow'fluid rounded/>
              </Col>
              <Col md={4}>
-                 <ListGroup variant='flush'>
+                 <ListGroup variant='flush' className='item-rounded shadow'>
  
                      <ListGroup.Item>
                          <h3>{product.name}</h3>
@@ -150,9 +152,9 @@ const ProductScreen = () => {
          </Row>
          <Row className='review'>
                         <Col md={6}>
-                            <h2>Reviews</h2>
+                            <h2 className='item-rounded shadow'>Reviews</h2>
                                 {product.reviews.length === 0 && (<Message>No reviews</Message>)}
-                                    <ListGroup variant='flush'>
+                                    <ListGroup variant='flush' className='item-rounded shadow'>
                                         {product.reviews.map((review) => (
                                             <ListGroup.Item key={review._id}>
                                                 <strong>{review.name}</strong>

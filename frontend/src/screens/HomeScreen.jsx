@@ -7,6 +7,7 @@ import Loader from '../components/Loader.jsx'
 import Message from '../components/Message.jsx'
 import Paginate from '../components/Paginate.jsx'
 import ProductCarousel from '../components/ProductCarousel.jsx'
+import Meta from '../components/Meta.jsx'
 // import products from '../products'
 // import axios from 'axios'
 // import { useEffect, useState } from 'react';
@@ -24,7 +25,9 @@ const HomeScreen = () => {
         <Loader />
       ) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (
         <>
+        <Meta title="Tech Shop" />
         <h1 className='custom-text fw-light'>Latest Products</h1>
+        <hr />
         <Row>
           {/* from res.json({ products, page, pages }) (backend)*/}
             {data.products.map((product)=>(

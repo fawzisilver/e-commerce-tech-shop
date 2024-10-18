@@ -37,9 +37,9 @@ const CartScreen = () => {
                     Your cart is empty <Link to="/" className="custom-link custom-link-hover">Go back</Link>
                 </Message>
             ) : (
-                <ListGroup variant='flush'>
+                <ListGroup variant='flush' className='item-rounded shadow'>
                     {cartItems.map((item) => (
-                        <ListGroup.Item key={item._id}>
+                        <ListGroup.Item key={item._id} >
                             <Row>
                                 <Col md={2}>
                                     <Image src={item.image} alt={item.name} fluid rounded />

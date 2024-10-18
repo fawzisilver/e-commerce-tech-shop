@@ -3,6 +3,7 @@
   --bs-link-color: #3c4c5d;
 }
 main {
+  background-color: rgb(224, 221, 221);
   min-height: 80vh;
   padding-bottom: 60px;
 }
