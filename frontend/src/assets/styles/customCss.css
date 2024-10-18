@@ -10,11 +10,9 @@
     background-color: rgb(33,37,41); 
     color: white;
     width: 100%;
-    height: 100%;
-    position: fixed;
     display: flex;
     justify-content: center;
-    
+    padding: 20px 0; /* Adds padding to give the footer some height */
 }
 
 .custom-link {
@@ -70,6 +68,11 @@
 .checkbox {
     background-color: rgb(33,37,41);
 
+}
+.img-custom {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
 }
 
 /* image */
@@ -556,7 +559,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
-    height: var(--bs-card-height);
+    height: 90%;
     word-wrap: break-word;
     background-color: var(--bs-card-bg);
     background-clip: border-box;
@@ -6182,6 +6185,7 @@
 }
 
 .carousel-indicators {
+  
   position: absolute;
   right: 0;
   bottom: 0;
@@ -6196,23 +6200,23 @@
   list-style: none;
 }
 .carousel-indicators [data-bs-target] {
-  box-sizing: content-box;
-  flex: 0 1 auto;
-  width: 30px;
-  height: 3px;
-  padding: 0;
-  margin-right: 3px;
-  margin-left: 3px;
-  text-indent: -999px;
-  cursor: pointer;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  opacity: 0.5;
-  transition: opacity 0.6s ease;
-}
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 3px;
+    padding: 0;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: 0.5;
+    transition: opacity 0.6s ease;
+  }
 @media (prefers-reduced-motion: reduce) {
   .carousel-indicators [data-bs-target] {
     transition: none;
@@ -6223,15 +6227,15 @@
 }
 
 .carousel-caption {
-    position: absolute;
-    bottom: 20px; /* Adjust this value to place it at the right height */
-    left: 50%; /* Moves the caption to the horizontal center */
-    transform: translateX(-50%); /* Centers the caption horizontally */
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
-    padding: 10px 20px; /* Adds some padding around the text */
-    border-radius: 5px; /* Optional: Adds a rounded border */
-  }
+  position: absolute;
+  bottom: 20px; /* Adjust this value to place it at the right height */
+  left: 50%; /* Moves the caption to the horizontal center */
+  transform: translateX(-50%); /* Centers the caption horizontally */
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
+  padding: 10px 20px; /* Adds some padding around the text */
+  border-radius: 5px; /* Optional: Adds a rounded border */
+}
 
 .carousel-dark .carousel-control-prev-icon,
 .carousel-dark .carousel-control-next-icon {
