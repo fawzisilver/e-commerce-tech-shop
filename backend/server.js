@@ -44,6 +44,16 @@ app.use('/images', express.static(path.join(__dirname, 'frontend/public/images')
 
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAYPAL_CLIENT_ID }))
 
+if (process.env.NODE_ENV === 'production') {
+    // set static folder
+    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+    app.get('*', (req, res) => 
+        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+    );
+}
+
+
 //overriding express error handler
 app.use(notFound);
 app.use(errorHandler);
