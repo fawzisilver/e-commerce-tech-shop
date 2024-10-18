@@ -6,6 +6,7 @@ import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 import Loader from '../components/Loader.jsx'
 import Message from '../components/Message.jsx'
 import Paginate from '../components/Paginate.jsx'
+import ProductCarousel from '../components/ProductCarousel.jsx'
 // import products from '../products'
 // import axios from 'axios'
 // import { useEffect, useState } from 'react';
@@ -18,7 +19,7 @@ const HomeScreen = () => {
 
   return (
     <>
-    { keyword && <Link to="/" className='btn btn-light mb-3'>Go back</Link>}
+    { !keyword ? (<ProductCarousel />) : (<Link to="/" className='btn btn-light mb-3'>Go back</Link>)}
       {isLoading ? (
         <Loader />
       ) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (

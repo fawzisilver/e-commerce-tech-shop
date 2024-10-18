@@ -8,11 +8,11 @@ import Product from '../models/productModel.js'
  * @access Public
  */
 const getProducts = asyncHandler(async (req, res) => {
-    const pageSize = 3;// number of products to be displayed per page
+    const pageSize = 4;// number of products to be displayed per page
 
     const page = Number(req.query.pageNumber) || 1; // gets the current page number (/api/products?pageNumbers=3 then page=3) or 
 
-    // For Search feature ($regex is part of mongoDb)
+    // For Search feature ($regex is part of mongoDb) (object to be use in Product.find({ ...keyword }))
     const keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' }} : {} // $options: 'i' (aka insensitive)
 
     //({...keyword}) to find or match only that matches keyword (same as below find({...keyword}))
@@ -154,4 +154,22 @@ const createProductReview = asyncHandler(async (req, res) => {
     
 })
 
-export { getProducts, getProductById, createProduct, updateProduct, deleteProduct, createProductReview }
+/**
+ * @desc GET top rated products
+ * @route Get /api/products/top
+ * @access Public
+ */
+const getTopProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({rating: -1}).limit(3);
+
+    res.status(200).json(products);
+})
+
+
+export { getProducts,
+         getProductById,
+         createProduct,
+         updateProduct,
+         deleteProduct,
+         createProductReview,
+        getTopProducts }

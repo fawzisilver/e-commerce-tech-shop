@@ -1,3 +1,4 @@
+import { getTopProducts } from "../../../backend/controllers/productController";
 import { PRODUCTS_URL } from "../constants";
 import { apiSlice } from "./apiSlice"; //parent to productsApiSlice
 
@@ -50,19 +51,15 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                 body: data,
             }),
             invalidatesTags: ['Products'],
-        })
-        /** Example of full query object    
-         *    getProductDetails: builder.query({
-            query: (id) => ({
-              url: `/api/products/${id}`,
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-              credentials: 'include',
+        }),
+        getTopProducts: builder.query({
+            query: () => ({
+                url: `${PRODUCTS_URL}/top`,
             }),
-          }),
-           */
+            keepUnusedDataFor: 5,
+        })
+
+      
 
     }),
 })
@@ -72,7 +69,8 @@ export const { useGetProductsQuery,
      useGetProductDetailsQuery,
       useCreateProductMutation,
     useUpdateProductMutation,
-useDeleteProductMutation,
-useCreateReviewMutation } = productsApiSlice;
+    useDeleteProductMutation,
+    useCreateReviewMutation,
+    useGetTopProductsQuery } = productsApiSlice;
 
 

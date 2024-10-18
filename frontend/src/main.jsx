@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import './assets/styles/index.css'
-// import './assets/styles/bootstrap.custom.css'
+import './assets/styles/bootstrap.custom.css'
 // import 'bootstrap/dist/css/bootstrap.min.css' (mayve not needed)
 import './assets/styles/customCss.css'
 import HomeScreen from './screens/HomeScreen.jsx' 
