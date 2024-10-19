@@ -28,16 +28,12 @@ app.use(cookieParser())
 
 
 
-const corsOptions = {
-    origin: [
-      'http://localhost:5173', // Local development
-      'https://astounding-pegasus-6b7a2e.netlify.app', // Netlify domain
-    ],
-    credentials: true, // Allows sending cookies
-    methods: ['GET', 'POST'],
-  };
-  
-  app.use(cors(corsOptions));
+if (process.env.NODE_ENV !== 'production') {
+    app.use(cors({
+      origin: 'http://localhost:5173',
+      credentials: true,
+    }));
+  }
   
 
 
@@ -53,14 +49,24 @@ app.use('/images', express.static(path.join(__dirname, 'frontend/public/images')
 
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAYPAL_CLIENT_ID }))
 
+// Production settings
 if (process.env.NODE_ENV === 'production') {
-    // set static folder
+    // CORS for production (Netlify domain)
+    const corsOptions = {
+      origin: 'https://astounding-pegasus-6b7a2e.netlify.app', // Your Netlify domain
+      credentials: true, 
+      methods: ['GET', 'POST'],
+    };
+    app.use(cors(corsOptions));
+  
+    // Serve static files from the dist folder in production
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
-
+  
+    // Handle all unmatched routes by serving index.html
     app.get('*', (req, res) => 
-        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+      res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
     );
-}
+  }
 
 
 //overriding express error handler
