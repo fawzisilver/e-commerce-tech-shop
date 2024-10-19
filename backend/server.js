@@ -65,7 +65,7 @@ if (process.env.NODE_ENV === 'production') {
 
     // CORS settings for production (Netlify domain)
     const corsOptions = {
-        origin: 'https://cheerful-melba-f694a7.netlify.app/', // Replace with your actual Netlify domain
+        origin: 'techshopisaac.netlify.app/', // Replace with your actual Netlify domain
         credentials: true, // Allows sending cookies
     };
     app.use(cors(corsOptions));
