@@ -64,6 +64,13 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => 
       res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
     );
+
+    const corsOptions = {
+        origin: 'https://melodious-taffy-f03687.netlify.app', // Your Netlify domain
+        credentials: true, 
+        methods: ['GET', 'POST'],
+      };
+      app.use(cors(corsOptions));
   }
 
 
