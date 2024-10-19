@@ -31,7 +31,7 @@ app.use(cookieParser())
 const corsOptions = {
     origin: [
       'http://localhost:5173', // Local development
-      'https://techshopisaac.netlify.app', // Netlify domain
+      'https://astounding-pegasus-6b7a2e.netlify.app', // Netlify domain
     ],
     credentials: true, // Allows sending cookies
     methods: ['GET', 'POST'],
