@@ -68,8 +68,9 @@ if (process.env.NODE_ENV === 'production') {
     const corsOptions = {
         origin: [
             'https://melodious-taffy-f03687.netlify.app',
-            'https://e-commerce-tech-shop-1.onrender.com'
-        ], 
+            'https://e-commerce-tech-shop-1.onrender.com',
+            'https://e-commerce-tech-shop-frontend.onrender.com'
+        ],
         credentials: true, 
         methods: ['GET', 'POST'],
       };
