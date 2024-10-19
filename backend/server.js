@@ -32,6 +32,12 @@ app.use(cors({
 }));
 //previous app.use(cors());
 
+const corsOptions = {
+    origin: 'https://67130221e4d93efa329d0b78--cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
+    credentials: true,
+  };
+  app.use(cors(corsOptions));
+
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
