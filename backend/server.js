@@ -32,11 +32,11 @@ app.use(cors({
 }));
 //previous app.use(cors());
 
-const corsOptions = {
-    origin: 'https://67130221e4d93efa329d0b78--cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
-    credentials: true,
-  };
-  app.use(cors(corsOptions));
+// const corsOptions = {
+//     origin: 'https://67130221e4d93efa329d0b78--cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
+//     credentials: true,
+//   };
+//   app.use(cors(corsOptions));
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
@@ -50,14 +50,38 @@ app.use('/images', express.static(path.join(__dirname, 'frontend/public/images')
 
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAYPAL_CLIENT_ID }))
 
+// if (process.env.NODE_ENV === 'production') {
+//     // set static folder
+//     app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+//     app.get('*', (req, res) => 
+//         res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+//     );
+// }
+
 if (process.env.NODE_ENV === 'production') {
-    // set static folder
+    // Serve the static files from the dist folder
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
+    // CORS settings for production (Netlify domain)
+    const corsOptions = {
+        origin: 'https://your-netlify-domain.netlify.app', // Replace with your actual Netlify domain
+        credentials: true, // Allows sending cookies
+    };
+    app.use(cors(corsOptions));
+
+    // Serve the index.html file for any other routes
     app.get('*', (req, res) => 
         res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
     );
+} else {
+    // In development mode, allow requests from localhost:5173 (Vite development server)
+    app.use(cors({
+        origin: 'http://localhost:5173', // The URL of your frontend during development
+        credentials: true, // Allows sending cookies
+    }));
 }
+
 
 
 //overriding express error handler
