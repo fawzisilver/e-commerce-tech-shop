@@ -32,9 +32,12 @@ const corsOptions = {
     origin: [
       'http://localhost:5173', // Local dev
       'https://melodious-taffy-f03687.netlify.app', // Netlify
+      'https://e-commerce-tech-shop-1.onrender.com',
+      'https://e-commerce-tech-shop-frontend.onrender.com'
     ],
     credentials: true, // Allows sending cookies
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    
   };
   app.use(cors(corsOptions));
   
@@ -72,7 +75,7 @@ if (process.env.NODE_ENV === 'production') {
             'https://e-commerce-tech-shop-frontend.onrender.com'
         ],
         credentials: true, 
-        methods: ['GET', 'POST'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
       };
       app.use(cors(corsOptions));
   }
