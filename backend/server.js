@@ -57,7 +57,7 @@ app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAY
 if (process.env.NODE_ENV === 'production') {
     // CORS for production (Netlify domain)
     const corsOptions = {
-      origin: 'https://astounding-pegasus-6b7a2e.netlify.app', // Your Netlify domain
+      origin: 'https://melodious-taffy-f03687.netlify.app', // Your Netlify domain
       credentials: true, 
       methods: ['GET', 'POST'],
     };
