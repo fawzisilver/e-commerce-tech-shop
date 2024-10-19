@@ -49,15 +49,30 @@ app.use('/images', express.static(path.join(__dirname, 'frontend/public/images')
 
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAYPAL_CLIENT_ID }))
 
+// Define your allowed origins
+
 // Production settings
 if (process.env.NODE_ENV === 'production') {
+
+    const allowedOrigins = [
+        'http://localhost:5173', // Local development URL
+        'https://astounding-pegasus-6b7a2e.netlify.app/', // Your Netlify-deployed URL
+      ];
     // CORS for production (Netlify domain)
+    // Configure CORS
     const corsOptions = {
-      origin: 'https://astounding-pegasus-6b7a2e.netlify.app', // Your Netlify domain
-      credentials: true, 
-      methods: ['GET', 'POST'],
-    };
-    app.use(cors(corsOptions));
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allows cookies to be sent
+  };
+  
+  // Apply CORS middleware
+  app.use(cors(corsOptions));
   
     // Serve static files from the dist folder in production
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
