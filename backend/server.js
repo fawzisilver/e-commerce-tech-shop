@@ -26,23 +26,15 @@ app.use(express.urlencoded({ extended: true}));
 // Cookie parser middleware
 app.use(cookieParser())
 
-// const corsOptions = {
-//     origin: 'https://cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
-//     credentials: true,
-//   };
-//   app.use(cors(corsOptions));
 
-// app.use(cors({
-//     origin: 'http://localhost:5173', // The URL of your frontend
-//     credentials: true, // Allows sending cookies
-// }));
 
 const corsOptions = {
     origin: [
       'http://localhost:5173', // Local development
-      'https://cheerful-melba-f694a7.netlify.app', // Netlify domain
+      'https://techshopisaac.netlify.app', // Netlify domain
     ],
     credentials: true, // Allows sending cookies
+    methods: ['GET', 'POST'],
   };
   
   app.use(cors(corsOptions));
