@@ -28,16 +28,16 @@ app.use(cookieParser())
 
 
 
-// const corsOptions = {
-//     origin: [
-//       'http://localhost:5173', // Local development
-//       'https://astounding-pegasus-6b7a2e.netlify.app', // Netlify domain
-//     ],
-//     credentials: true, // Allows sending cookies
-//     methods: ['GET', 'POST'],
-//   };
+const corsOptions = {
+    origin: [
+      'http://localhost:5173', // Local development
+    //   'https://astounding-pegasus-6b7a2e.netlify.app', // Netlify domain
+    ],
+    credentials: true, // Allows sending cookies
+    methods: ['GET', 'POST'],
+  };
   
-//   app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
   
 
 
