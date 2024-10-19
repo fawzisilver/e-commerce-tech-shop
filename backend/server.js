@@ -30,14 +30,14 @@ app.use(cookieParser())
 
 const corsOptions = {
     origin: [
-      'http://localhost:5173', // Local development
-    //   'https://astounding-pegasus-6b7a2e.netlify.app', // Netlify domain
+      'http://localhost:5173', // Local dev
+      'https://melodious-taffy-f03687.netlify.app', // Netlify
     ],
     credentials: true, // Allows sending cookies
     methods: ['GET', 'POST'],
   };
-  
   app.use(cors(corsOptions));
+  
   
 
 
@@ -55,13 +55,7 @@ app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAY
 
 // Production settings
 if (process.env.NODE_ENV === 'production') {
-    // CORS for production (Netlify domain)
-    const corsOptions = {
-      origin: 'https://melodious-taffy-f03687.netlify.app', // Your Netlify domain
-      credentials: true, 
-      methods: ['GET', 'POST'],
-    };
-    app.use(cors(corsOptions));
+    
   
     // Serve static files from the dist folder in production
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
