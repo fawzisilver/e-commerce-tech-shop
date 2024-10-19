@@ -26,17 +26,19 @@ app.use(express.urlencoded({ extended: true}));
 // Cookie parser middleware
 app.use(cookieParser())
 
+const corsOptions = {
+    origin: 'https://67130221e4d93efa329d0b78--cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
+    credentials: true,
+  };
+  app.use(cors(corsOptions));
+
 app.use(cors({
     origin: 'http://localhost:5173', // The URL of your frontend
     credentials: true, // Allows sending cookies
 }));
 //previous app.use(cors());
 
-const corsOptions = {
-    origin: 'https://67130221e4d93efa329d0b78--cheerful-melba-f694a7.netlify.app/', // Replace with your Netlify domain
-    credentials: true,
-  };
-  app.use(cors(corsOptions));
+
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
